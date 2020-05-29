@@ -1,0 +1,89 @@
+<div class="colorBar">
+
+  <div class="topBar">
+    <div class="loginBarLeft">
+      <button mat-button (click)="loadTheme('purpleTheme.css')">
+        <mat-icon class="purpleIcon">color_lens</mat-icon>
+      </button>
+      <button mat-button (click)="loadTheme('blueTheme.css')">
+        <mat-icon class="blueIcon">color_lens</mat-icon>
+      </button>
+      <button mat-button (click)="loadTheme('orangeTheme.css')">
+        <mat-icon class="orangeIcon">color_lens</mat-icon>
+      </button>
+    </div>
+
+    <div class="loginBarRight">
+      <div *ngIf="uzytkownik!=null; else brakUzytkownika" id='loginBarInline'>
+        {{uzytkownik.imie}} {{uzytkownik.nazwisko}}
+      </div>
+
+      <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="logIn()" id="loginBarText">zaloguj</div>
+      <div *ngIf="uzytkownik==null; else brakUzytkownika" (click)="createUser()" id="loginBarInline">
+        &nbsp;|
+        <div id="loginBarText">utwórz konto</div>
+      </div>
+      <div *ngIf="uzytkownik!=null; else brakUzytkownika" id="loginBarInline">
+        &nbsp;|
+        <div (click)="userInfo()" id="loginBarText">konto</div>
+      </div>
+
+      <div *ngIf="uzytkownik!=null; else brakUzytkownika" (click)="logout()" id="loginBarInline">
+        &nbsp;|
+        <div id="loginBarText">wyloguj</div>
+      </div>
+
+      <ng-template #brakUzytkownika></ng-template>
+    </div>
+  </div>
+
+  <div class="banner">
+    <img class="bannerImage" src="assets\images\banner.jpg">
+    <div class="name">
+      <h1>Buongiorno Moltissimo</h1>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <button mat-button (click)="home()">
+      <mat-icon>home</mat-icon> Home
+    </button>
+    <button mat-button (click)="menu()">
+      <mat-icon> restaurant_menu</mat-icon> Menu
+    </button>
+
+    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
+      <button mat-button [matMenuTriggerFor]="menu2">
+        <mat-icon>person</mat-icon> Pracownik
+      </button>
+      <mat-menu #menu2="matMenu">
+        <button mat-menu-item (click)="showOrders()">
+          <mat-icon>library_books</mat-icon>Wyświetl zamówienia
+        </button>
+      </mat-menu>
+    </div>
+
+    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik==false" id='loginBarInline'>
+      <button mat-button [matMenuTriggerFor]="menu2">
+        <mat-icon>library_books</mat-icon> Zamówienia
+      </button>
+      <mat-menu #menu2="matMenu">
+        <button mat-menu-item (click)="clientOrders()">
+          <mat-icon> menu_book </mat-icon>Moje zamówienia
+        </button>
+        <button mat-menu-item (click)="clientMakeOrder()">
+          <mat-icon>library_add</mat-icon>Złóż zamówienie
+        </button>
+      </mat-menu>
+
+    </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
+
+<div class="footer">
+  Created by: Daniel Ch.<br>
+  v1.2020
+</div>

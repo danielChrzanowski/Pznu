@@ -1,0 +1,105 @@
+<div class="content">
+    <h1>Użytkownik</h1>
+
+    <hr>
+    <div class="setPadding"> Imię: {{loggedUser.imie}} </div><br>
+    <div class="setPadding">Nazwisko: {{loggedUser.nazwisko}}</div><br>
+    <div class="setPadding">E-mail: {{loggedUser.email}}</div><br>
+
+    <hr>
+
+    <div class="setPadding">
+        <div class="info">
+            <br>
+            <mat-form-field class="full-width">
+                <mat-label>Stare hasło</mat-label>
+                <input type="password" matInput name="password" [formControl]="oldPasswordFormControl"
+                    #oldPasswordInput>
+                <mat-error
+                    *ngIf="oldPasswordFormControl.hasError('maxlength') && !oldPasswordFormControl.hasError('required')">
+                    Max 20 znaków
+                </mat-error>
+                <mat-error *ngIf="oldPasswordFormControl.hasError('required')">
+                    Hasło nie może być puste
+                </mat-error>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="full-width">
+                <mat-label>Nowe hasło</mat-label>
+                <input type="password" matInput name="password" [formControl]="newPasswordFormControl"
+                    #newPasswordInput>
+                <mat-error
+                    *ngIf="newPasswordFormControl.hasError('maxlength') && !newPasswordFormControl.hasError('required')">
+                    Max 20 znaków
+                </mat-error>
+                <mat-error *ngIf="newPasswordFormControl.hasError('required')">
+                    Hasło nie może być puste
+                </mat-error>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="full-width">
+                <mat-label>Powtórz nowe hasło</mat-label>
+                <input type="password" matInput name="password2" [formControl]="newPassword2FormControl"
+                    #newPassword2Input>
+                <mat-error
+                    *ngIf="newPassword2FormControl.hasError('maxlength') && !newPassword2FormControl.hasError('required')">
+                    Max 20 znaków
+                </mat-error>
+                <mat-error *ngIf="newPassword2FormControl.hasError('required')">
+                    Hasło nie może być puste
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <button mat-stroked-button
+                [disabled]="!oldPasswordFormControl.valid || !newPasswordFormControl.valid ||  !newPassword2FormControl.valid"
+                (click)="changePassword()">Zmień hasło</button>
+            <br>
+        </div>
+
+        <br>
+        <mat-form-field class="full-width">
+            <mat-label>Podaj hasło</mat-label>
+            <input type="password" class="form-control" matInput name="passwordDelete"
+                [formControl]="passwordDeleteFormControl" #passwordDeleteInput>
+            <mat-error
+                *ngIf="newPassword2FormControl.hasError('maxlength') && !newPassword2FormControl.hasError('required')">
+                Max 20 znaków
+            </mat-error>
+            <mat-error *ngIf="newPassword2FormControl.hasError('required')">
+                Hasło nie może być puste
+            </mat-error>
+        </mat-form-field>
+        &nbsp;
+
+        <button mat-stroked-button [disabled]="!passwordDeleteFormControl.valid" (click)="checkPasswords()">
+            Usuń konto
+        </button>
+
+    </div>
+
+    <jw-modal id="wrongDBPasswordErrorModal">
+        <h2>Stare hasło nie zgadza się z bazą</h2>
+        <p>Wprowadź ponownie stare hasło</p>
+        <button mat-stroked-button (click)="closeModal('wrongDBPasswordErrorModal');">Zamknij</button>
+    </jw-modal>
+
+    <jw-modal id="passwordErrorModal">
+        <h2>Nowe hasła nie są identyczne</h2>
+        <p>Wprowadź ponownie hasła</p>
+        <button mat-stroked-button (click)="closeModal('passwordErrorModal');">Zamknij</button>
+    </jw-modal>
+
+    <jw-modal id="passwordChangedModal">
+        <h2>Hasło zostało zmienione</h2>
+        <p>Zaloguj się ponownie</p>
+        <button mat-stroked-button (click)="logout()">Zamknij</button>
+    </jw-modal>
+
+    <jw-modal id="deleteAccountModal">
+        <h2>Czy na pewno chcesz skasować konto?</h2>
+        <p>Tej operacji nie można cofnąć</p>
+        <button mat-stroked-button (click)="closeModal('deleteAccountModal');">Zamknij</button>
+        <button mat-stroked-button (click)="deleteAccount();" style="float:right">Skasuj</button>
+    </jw-modal>
+
+</div>
