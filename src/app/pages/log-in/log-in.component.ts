@@ -96,7 +96,8 @@ export class LogInComponent implements OnInit {
             data['imie'],
             data['nazwisko'],
             data['email'],
-            data['czy_pracownik']);
+            data['czy_pracownik'],
+            data['link_github']);
           console.log(this.loggedUserService.getLoggedUser());
         },
         error => console.log(error));

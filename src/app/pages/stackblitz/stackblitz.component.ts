@@ -3,18 +3,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { NavigationEnd, Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
-import { Order } from 'src/app/models/order-model/order-model';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { OrderService } from 'src/app/services/order-service/order.service';
 
 @Component({
-  selector: 'app-client-orders',
-  templateUrl: './client-orders.component.html',
-  styleUrls: ['./client-orders.component.scss']
+  selector: 'app-stackblitz',
+  templateUrl: './stackblitz.component.html',
+  styleUrls: ['./stackblitz.component.scss']
 })
-export class ClientOrdersComponent implements OnInit {
+export class StackblitzComponent implements OnInit {
 
-  clientOrders: Array<Order>;
   displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'stan'];
   interval;
 
@@ -22,28 +20,12 @@ export class ClientOrdersComponent implements OnInit {
   @ViewChild('pdfDiv') pdfDiv: ElementRef;
 
   constructor(
-    private orderService: OrderService,
-    private router: Router,
-    private loggedUserService: UserSingleton) { }
+      private loggedUserService: UserSingleton) { }
 
   ngOnInit(): void {
-    this.getClientOrders();
 
-    //do usuniecia
-    this.interval = setInterval(() => {
-      this.getClientOrders();
-    }, 400);
   }
 
-  getClientOrders() {
-    this.orderService.getClientOrders(this.loggedUserService.getId())
-      .subscribe(
-        data => {
-          console.log(data);
-          this.clientOrders = data;
-        },
-        error => console.log(error));
-  }
 
   //pobierz widok jako pdf
   exportAsPDF() {

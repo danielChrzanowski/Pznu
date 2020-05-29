@@ -61,24 +61,20 @@ export class AppComponent implements OnInit {
     this.router.navigate(["/log-in"]);
   }
 
-  showOrders() {
-    this.router.navigate(["/showOrders"]);
+  dodajPost() {
+    this.router.navigate(["/dodajPost"]);
   }
 
   createUser() {
     this.router.navigate(["/createUser"]);
   }
 
-  menu() {
-    this.router.navigate(["/menu"]);
+  zadania() {
+    this.router.navigate(["/zadania"]);
   }
 
-  clientOrders() {
-    this.router.navigate(["/clientOrders"]);
-  }
-
-  clientMakeOrder() {
-    this.router.navigate(["/makeOrder"]);
+  stackblitz() {
+    this.router.navigate(["/stackblitz"]);
   }
 
   userInfo() {
