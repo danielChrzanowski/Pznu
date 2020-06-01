@@ -1,8 +1,19 @@
-<div class="content" #pdfDiv>
+<div class="content">
 
     <h1>Stackblitz</h1>
 
     <hr>
 
-    stackblitza tu dam
+    <div class="button">
+        <button mat-stroked-button onclick="embedNewAngular720()">New Angular 720</button>
+        <div class="divider"></div>
+        <button mat-stroked-button onclick="embedNewAngular1080()">New Angular 1080</button>
+        <div class="divider"></div>
+        <button mat-stroked-button onclick="embedGithubProject720()">Github 720</button>
+        <div class="divider"></div>
+        <button mat-stroked-button onclick="embedGithubProject1080()">Github 1080</button>
+    </div>
+
 </div>
+
+<div id="stackblitzWindow"></div>

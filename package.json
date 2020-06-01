@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~9.0.3",
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
+    "@stackblitz/sdk": "^1.4.0",
     "crypto-js": "^4.0.0",
     "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
@@ -48,5 +49,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
+  },
+  "browser": {
+      "crypto": false
   }
 }

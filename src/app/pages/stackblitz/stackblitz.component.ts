@@ -1,10 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { NavigationEnd, Router } from '@angular/router';
-import html2canvas from 'html2canvas';
-import * as jsPDF from 'jspdf';
-import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
-import { OrderService } from 'src/app/services/order-service/order.service';
+import { Component, OnInit } from '@angular/core';
+import sdk from '@stackblitz/sdk';
 
 @Component({
   selector: 'app-stackblitz',
@@ -13,62 +8,56 @@ import { OrderService } from 'src/app/services/order-service/order.service';
 })
 export class StackblitzComponent implements OnInit {
 
-  displayedColumns: string[] = ['zamowienie_id', 'data', 'suma_cen', 'stan'];
-  interval;
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild('pdfDiv') pdfDiv: ElementRef;
-
-  constructor(
-      private loggedUserService: UserSingleton) { }
+  constructor() { }
 
   ngOnInit(): void {
 
   }
 
+}
 
-  //pobierz widok jako pdf
-  exportAsPDF() {
-    let data = this.pdfDiv.nativeElement;
-    html2canvas(data).then(canvas => {
-      const contentDataURL = canvas.toDataURL('image/jpeg')
+const code = `import moment from 'moment';
 
-      //Generates PDF in landscape mode
-      //let pdf = new jsPDF('l', 'cm', 'a4');
+document.getElementById('time').innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
+`;
 
-      //Generates PDF in portrait mode
-      let pdf = new jsPDF('p', 'cm', 'a4');
+const html = `<h1>I was created on <span id='time'></span></h1>`
 
-      //var width = pdf.internal.pageSize.getWidth();
-      //var height = pdf.internal.pageSize.getHeight();
-
-      pdf.addImage(contentDataURL, 'PNG', -0.6, 0);
-      pdf.save('orders.pdf');
-    });
+const projectAngular = {
+  files: {
+    'main.ts': code,
+    'index.html': html,
+    'file.ts': 'sdfs'
+  },
+  title: 'Zadanie',
+  description: 'Treść zadania:\n napisz program ktory cos tam',
+  template:'angular-cli',
+  tags: ['stackblitz', 'sdk'],
+  dependencies: {
+    moment: '*'
   }
+};
 
-  //pobierz pdf bez polskich znakow
-  exportAsPDF2() {
-    let doc = new jsPDF('1', 'pt', 'a4');
+window['embedNewAngular720'] = () => {
+  sdk.embedProject('stackblitzWindow', projectAngular, { height: 720 });
+}
 
-    let specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
+window['embedNewAngular1080'] = () => {
+  sdk.embedProject('stackblitzWindow', projectAngular, { height: 1080 });
+}
 
-    let pdfDiv = this.pdfDiv.nativeElement;
+window['embedGithubProject720'] = () => {
+  sdk.embedGithubProject(
+    'stackblitzWindow',
+    'danielChrzanowski/Pznu',
+    { height: 720 }
+  );
+}
 
-    doc.fromHTML(pdfDiv.innerHTML, 15, 15, {
-      width: 1900,
-      'elementHandlers': specialElementHandlers
-    });
-
-    doc.save('orders.pdf');
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.interval);
-  }
-
+window['embedGithubProject1080'] = () => {
+  sdk.embedGithubProject(
+    'stackblitzWindow',
+    'danielChrzanowski/Pznu',
+    { height: 1080,  }
+  );
 }

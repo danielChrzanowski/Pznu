@@ -1,13 +1,14 @@
 .content {
-    width: 800px;
+  max-width: 100%;
+  width: 100%;
 }
 
-.tekst {
-    padding-top: 10px;
+.button {
+  display: inline-block;
 }
 
-table {
-    margin: 20px auto 20px auto;
-    width: 80%;
-    text-align: left;
+.divider {
+  padding-left: 5px;
+  display: inline-block;
 }
+
