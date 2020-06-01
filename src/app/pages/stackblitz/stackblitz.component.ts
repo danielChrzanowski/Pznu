@@ -57,7 +57,7 @@ window['embedGithubProject720'] = () => {
 window['embedGithubProject1080'] = () => {
   sdk.embedGithubProject(
     'stackblitzWindow',
-    'danielChrzanowski/Pznu',
+    'danielChrzanowski/AngularProject',
     { height: 1080,  }
   );
 }
