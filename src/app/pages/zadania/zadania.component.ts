@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Zadanie } from 'src/app/models/zadanie-model/zadanie-model';
 import { ZadanieService } from 'src/app/services/zadanie-service/zadanie.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-zadania',
@@ -23,7 +22,7 @@ export class ZadaniaComponent implements OnInit {
   columnsToDisplay = ['tytul', 'data'];
   expandedElement: Zadanie | null;
 
-  constructor(private zadanieService: ZadanieService, private router: Router) { }
+  constructor(private zadanieService: ZadanieService) { }
 
   ngOnInit(): void {
     this.getAll();

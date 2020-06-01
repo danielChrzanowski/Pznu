@@ -92,7 +92,8 @@ export class LogInComponent implements OnInit {
     this.uzytkownikService.loggedUserById(this.loggedUserService.getId())
       .subscribe(
         data => {
-          this.loggedUserService.setLoggedUser(data['uzytkownik_id'],
+          this.loggedUserService.setLoggedUser(
+            data['uzytkownik_id'],
             data['imie'],
             data['nazwisko'],
             data['email'],
