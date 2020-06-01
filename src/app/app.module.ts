@@ -15,7 +15,7 @@ import { ModalModule } from './_modal';
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
+    routingComponents
   ],
   imports: [
     RoutingModule,

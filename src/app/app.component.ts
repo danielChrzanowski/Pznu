@@ -77,6 +77,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(["/stackblitz"]);
   }
 
+  mojeZadania() {
+    this.router.navigate(["/mojeZadania"]);
+  }
+
   userInfo() {
     this.router.navigate(["/userInfo"]);
   }

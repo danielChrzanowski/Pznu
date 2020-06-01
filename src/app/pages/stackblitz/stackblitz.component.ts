@@ -31,7 +31,7 @@ const projectAngular = {
   },
   title: 'Zadanie',
   description: 'Treść zadania:\n napisz program ktory cos tam',
-  template:'angular-cli',
+  template: 'angular-cli',
   tags: ['stackblitz', 'sdk'],
   dependencies: {
     moment: '*'
@@ -49,7 +49,7 @@ window['embedNewAngular1080'] = () => {
 window['embedGithubProject720'] = () => {
   sdk.embedGithubProject(
     'stackblitzWindow',
-    'danielChrzanowski/Pznu',
+    'danielChrzanowski/PZNU-zadanie1',
     { height: 720 }
   );
 }
@@ -57,7 +57,7 @@ window['embedGithubProject720'] = () => {
 window['embedGithubProject1080'] = () => {
   sdk.embedGithubProject(
     'stackblitzWindow',
-    'danielChrzanowski/AngularProject',
-    { height: 1080,  }
+    'danielChrzanowski/PZNU-zadanie1',
+    { height: 1080, }
   );
 }
