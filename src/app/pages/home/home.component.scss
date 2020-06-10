@@ -1,6 +1,6 @@
 .post {
     border-bottom: 1px solid #808080;
-    white-space: pre-wrap
+    white-space: pre-wrap;
 }
 
 .date {
@@ -11,4 +11,12 @@
 .user {
     font-size: 10px;
     margin-left: 5px;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+.postContent {
+    padding: 15px;
 }

@@ -42,10 +42,10 @@ export class StackblitzComponent implements OnInit {
     {
       key: 'id',
       header: 'ID'
-    },    {
+    }, {
       key: 'tytul',
       header: 'Tytuł'
-    },    {
+    }, {
       key: 'link',
       header: 'Link'
     }
@@ -93,7 +93,12 @@ export class StackblitzComponent implements OnInit {
 
   openLinkInNewTab(url) {
     console.log("URL: " + url);
-    window.open(url, "_blank");
+    sdk.embedProjectId(
+      'stackblitzWindow',
+      url.replace('https://stackblitz.com/edit/', ''),
+      { height: 800 }
+    );
+    // window.open(url, "_blank");
   }
 
   selectLink(id, title) {
@@ -122,8 +127,6 @@ export class StackblitzComponent implements OnInit {
     console.log("ID: " + id);
     this.openModal(id);
   }
-
-
 
   openModal(id: string) {
     this.modalService.open(id);
@@ -158,26 +161,15 @@ const projectAngular = {
   }
 };
 
-window['nowyProjekt_720'] = () => {
-  sdk.embedProject('stackblitzWindow', projectAngular, { height: 720 });
+window['nowyProjekt'] = () => {
+  sdk.embedProject('stackblitzWindow', projectAngular, { height: 800 });
 }
 
-window['nowyProjekt_1080'] = () => {
-  sdk.embedProject('stackblitzWindow', projectAngular, { height: 1080 });
-}
-
-window['zadanie1_720'] = () => {
+window['zadanie1'] = () => {
   sdk.embedGithubProject(
     'stackblitzWindow',
     'danielChrzanowski/PZNU-zadanie1',
-    { height: 720 }
+    { height: 800 }
   );
 }
 
-window['zadanie1_1080'] = () => {
-  sdk.embedGithubProject(
-    'stackblitzWindow',
-    'danielChrzanowski/PZNU-zadanie1',
-    { height: 1080, }
-  );
-}
