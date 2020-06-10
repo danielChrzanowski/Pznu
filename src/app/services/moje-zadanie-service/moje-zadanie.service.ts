@@ -22,4 +22,8 @@ export class MojeZadanieService {
     return this.http.post(`${this.baseUrl}/addMojeZadanie`, zadanie, { headers: headers });
   }
 
+  public deleteLink(id): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/deleteLink/` + id);
+  }
+
 }

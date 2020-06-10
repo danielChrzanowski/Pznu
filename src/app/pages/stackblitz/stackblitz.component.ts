@@ -5,6 +5,7 @@ import sdk from '@stackblitz/sdk';
 import { MojeZadanie } from 'src/app/models/moje-zadanie/moje-zadanie-model';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
 import { MojeZadanieService } from 'src/app/services/moje-zadanie-service/moje-zadanie.service';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-stackblitz',
@@ -19,22 +20,36 @@ import { MojeZadanieService } from 'src/app/services/moje-zadanie-service/moje-z
   ]
 })
 export class StackblitzComponent implements OnInit {
-  @ViewChild('addInput') addInput: ElementRef;
+  @ViewChild('titleInput') titleInput: ElementRef;
+  @ViewChild('linkInput') linkInput: ElementRef;
 
-  addFormControl = new FormControl('', [
-    Validators.required
+  titleFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(15)
+  ]);
+
+  linkFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(50)
   ]);
 
   zadania: Array<MojeZadanie>;
+  selectedLinkToDelete;
+  selectedTitleToDelete;
 
-  columnsToDisplay = ['id', 'link'];
+  columnsToDisplay = ['id', 'tytul', 'link'];
   expandedElement: MojeZadanie | null;
 
-  constructor(private mojeZadanieService: MojeZadanieService, private userSingleton: UserSingleton) { }
+  constructor(
+    private mojeZadanieService: MojeZadanieService,
+    private userSingleton: UserSingleton,
+    private modalService: ModalService,
+  ) { }
 
   ngOnInit(): void {
     this.getAll();
   }
+
   getAll() {
     this.mojeZadanieService.getAll(this.userSingleton.getId())
       .subscribe(
@@ -48,7 +63,8 @@ export class StackblitzComponent implements OnInit {
   add() {
     let mojeZadanie = new MojeZadanie();
     mojeZadanie.id_uzytkownika = this.userSingleton.getId();
-    mojeZadanie.link = this.addInput.nativeElement.value;
+    mojeZadanie.tytul = this.titleInput.nativeElement.value;
+    mojeZadanie.link = this.linkInput.nativeElement.value;
     mojeZadanie.ocena = "brak oceny";
 
     console.log(mojeZadanie.id_uzytkownika + " " + mojeZadanie.link);
@@ -56,10 +72,53 @@ export class StackblitzComponent implements OnInit {
     this.mojeZadanieService.addMojeZadanie(mojeZadanie)
       .subscribe(data => {
         console.log(data);
-        this.addInput.nativeElement.value = "";
+        this.titleInput.nativeElement.value = "";
+        this.linkInput.nativeElement.value = "";
         this.getAll();
       }, error => console.log(error));
 
+  }
+
+  openLinkInNewTab(url) {
+    console.log("URL: " + url);
+    window.open(url, "_blank");
+  }
+
+  selectLink(id, title) {
+    this.selectedLinkToDelete = id;
+    this.selectedTitleToDelete = title;
+    this.openModal('confirmDeleteModal');
+  }
+
+  confirmDeleteModal() {
+    this.deleteLink(this.selectedLinkToDelete);
+  }
+
+  deleteLink(id: number) {
+    this.mojeZadanieService.deleteLink(id)
+      .subscribe(data => {
+        console.log(data);
+        this.selectedLinkToDelete = null;
+        this.selectedTitleToDelete = null;
+        this.closeModal('confirmDeleteModal');
+        this.getAll();
+      },
+        error => console.log(error));
+  }
+
+  helpButtonClick(id: string) {
+    console.log("ID: " + id);
+    this.openModal(id);
+  }
+
+
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
 }
@@ -79,7 +138,7 @@ const projectAngular = {
     'file.ts': 'sdfs'
   },
   title: 'Zadanie',
-  description: 'Treść zadania:\n napisz program ktory cos tam',
+  description: 'Oto twój nowy projekt',
   template: 'angular-cli',
   tags: ['stackblitz', 'sdk'],
   dependencies: {

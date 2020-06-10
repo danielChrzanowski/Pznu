@@ -14,6 +14,9 @@
         <button mat-stroked-button onclick="zadanie1_720()">Zadanie 1 (720)</button>
         <div class="divider"></div>
         <button mat-stroked-button onclick="zadanie1_1080()">Zadanie 1 (1080)</button>
+        &nbsp;|
+        <div class="divider"></div>
+        <button mat-raised-button color="warn" (click)="helpButtonClick('helpModal');">Pomoc</button>
     </div>
 
 </div>
@@ -28,17 +31,33 @@
 
     <form>
         <mat-form-field class="full-width">
+            <mat-label>Tytuł *</mat-label>
+            <input type="text" matInput [formControl]="titleFormControl" placeholder="Zadanie 1" #titleInput>
+            <mat-error *ngIf="titleFormControl.hasError('required')">
+                Tytuł nie może być pusty
+            </mat-error>
+            <mat-error *ngIf="titleFormControl.hasError('maxlength') && !titleFormControl.hasError('required')">
+                Max 15 znaków
+            </mat-error>
+        </mat-form-field>
+
+        &nbsp;
+
+        <mat-form-field class="full-width">
             <mat-label>Link *</mat-label>
-            <input type="text" matInput [formControl]="addFormControl"
-                placeholder="https://stackblitz.com/github/bnmiokkpp" #addInput>
-            <mat-error *ngIf="addFormControl.hasError('required')">
+            <input type="text" matInput [formControl]="linkFormControl"
+                placeholder="https://stackblitz.com/github/bnmiokkpp" #linkInput>
+            <mat-error *ngIf="linkFormControl.hasError('required')">
                 Link nie może być pusty
+            </mat-error>
+            <mat-error *ngIf="linkFormControl.hasError('maxlength') && !linkFormControl.hasError('required')">
+                Max 50 znaków
             </mat-error>
         </mat-form-field>
 
         <div class="divider"></div>
 
-        <button mat-stroked-button [disabled]="!addFormControl.valid" (keyup.enter)="add()"
+        <button mat-stroked-button [disabled]="!titleFormControl.valid || !linkFormControl.valid" (keyup.enter)="add()"
             (click)="add()">Dodaj</button>
     </form>
 
@@ -55,6 +74,9 @@
                         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                         <div class="example-element-diagram">
                             <div class="example-element-symbol">
+                                <button mat-stroked-button (click)="openLinkInNewTab(element.link);">Otwórz</button>
+                                &nbsp; <button mat-raised-button color="warn"
+                                    (click)="selectLink(element.id, element.tytul);">Skasuj</button> &nbsp;
                                 {{element.ocena}}
                             </div>
 
@@ -62,6 +84,7 @@
                     </div>
                 </td>
             </ng-container>
+
 
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
             <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
@@ -73,3 +96,18 @@
     </div>
 
 </div>
+
+<jw-modal id="helpModal">
+    <h2>Instrukcja</h2>
+    <p>1. Coś tam<br>
+        2. Coś tam 2
+    </p>
+    <button mat-stroked-button (click)="closeModal('helpModal');">Zamknij</button>
+</jw-modal>
+
+<jw-modal id="confirmDeleteModal">
+    <h2>Skasuj link</h2>
+    <p>Czy na pewno chcesz skasować "{{selectedTitleToDelete}}" ?</p>
+    <button mat-stroked-button (click)="closeModal('confirmDeleteModal');">Zamknij</button>
+    <button mat-raised-button (click)="confirmDeleteModal();" color="warn" style="float:right">Skasuj</button>
+</jw-modal>
