@@ -17,6 +17,16 @@ export class MojeZadanieService {
     return this.http.get(`${this.baseUrl}/getAllMojeZadania/` + id, { headers: headers });
   }
 
+  public getAllNoId(): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.get(`${this.baseUrl}/getAllZadaniaNoId`, { headers: headers });
+  }
+
+  public getZadanieById(id: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.get(`${this.baseUrl}/getZadanieById/` + id, { headers: headers });
+  }
+
   public addMojeZadanie(zadanie: MojeZadanie): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
     return this.http.post(`${this.baseUrl}/addMojeZadanie`, zadanie, { headers: headers });

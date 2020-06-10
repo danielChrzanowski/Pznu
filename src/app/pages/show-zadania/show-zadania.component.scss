@@ -1,3 +1,8 @@
+.content {
+  //max-width: 98%;
+  margin-bottom: 20px;
+}
+
 .content2 {
   position: relative;
   left: 50%;
@@ -12,9 +17,17 @@
   white-space: pre-wrap;
 }
 
-.content {
-  //max-width: 98%;
-  margin-bottom: 20px;
+.odstep {
+  padding-top: 5px;
+}
+
+h3 {
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+
+.example-full-width {
+  width: 100%;
 }
 
 .button {

@@ -57,6 +57,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(["/home"]);
   }
 
+  zadaniaStudentow() {
+    this.router.navigate(["/showZadania"]);
+  }
+
   logIn() {
     this.router.navigate(["/log-in"]);
   }

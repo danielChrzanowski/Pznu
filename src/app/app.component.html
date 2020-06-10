@@ -53,6 +53,12 @@
     </button>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
+      <button mat-button (click)="zadaniaStudentow()">
+        <mat-icon> restaurant_menu</mat-icon> Zadania studentów
+      </button>
+    </div>
+
+    <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
       <button mat-button (click)="dodajPost()">
         <mat-icon> restaurant_menu</mat-icon> Dodaj aktualności
       </button>

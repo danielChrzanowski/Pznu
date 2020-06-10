@@ -1,0 +1,60 @@
+<div class="content">
+
+    <h1>Zadania studentów</h1>
+
+    <hr>
+</div>
+
+<div id="stackblitzWindow"></div>
+
+<div class="content2">
+    <table mat-table [dataSource]="zadania" multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="{{def.key}}" *ngFor="let def of tableDef">
+            <th mat-header-cell *matHeaderCellDef> {{def.header}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[def.key]}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="example-element-diagram">
+                        <div class="example-element-symbol">
+                            <h3>Ocena:</h3>{{element.ocena}} <br>
+                            <div class="odstep">
+                                <button mat-stroked-button (click)="openLink(element.link);">Otwórz</button>
+                                &nbsp; <button mat-raised-button color="warn"
+                                    (click)="selectLink(element.id, element.tytul);">Oceń</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</div>
+
+<jw-modal id="ocenModal">
+    <h2>Oceń zadanie "{{selectedTitle}}"</h2>
+
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Treść</mat-label>
+        <textarea rows="10" matInput placeholder="Twoja ocena" [formControl]="ocenFormControl" #ocenaInput></textarea>
+        <mat-error *ngIf="ocenFormControl.hasError('required')">
+            Ocena nie może być pusta
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-stroked-button (click)="closeModal('ocenModal');">Zamknij</button>
+    <button mat-raised-button (click)="ocen();" color="warn" style="float:right">Oceń</button>
+</jw-modal>

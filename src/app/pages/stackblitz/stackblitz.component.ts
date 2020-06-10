@@ -91,7 +91,7 @@ export class StackblitzComponent implements OnInit {
 
   }
 
-  openLinkInNewTab(url) {
+  openLink(url) {
     console.log("URL: " + url);
     sdk.embedProjectId(
       'stackblitzWindow',
