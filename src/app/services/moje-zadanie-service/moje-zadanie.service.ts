@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MojeZadanie } from 'src/app/models/moje-zadanie/moje-zadanie-model';
@@ -13,11 +13,13 @@ export class MojeZadanieService {
   constructor(private http: HttpClient) { }
 
   public getAll(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getAllMojeZadania`);
+    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
+    return this.http.get(`${this.baseUrl}/getAllMojeZadania`, {headers: headers});
   }
 
   public addMojeZadanie(zadanie: MojeZadanie): Observable<any> {
-    return this.http.post(`${this.baseUrl}/addMojeZadanie`, zadanie);
+    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
+    return this.http.post(`${this.baseUrl}/addMojeZadanie`, zadanie, {headers: headers});
   }
 
 }

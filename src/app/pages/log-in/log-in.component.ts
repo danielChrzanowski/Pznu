@@ -71,13 +71,9 @@ export class LogInComponent implements OnInit {
   }
 
   getUserData() {
-    let headers: HttpHeaders = new HttpHeaders(
-      { 'Authorization': 'Basic ' + sessionStorage.getItem('token') }
-    );
+    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
 
-    let options = { headers: headers };
-
-    this.http.get(`${this.baseUrl}/user`, options)
+    this.http.get(`${this.baseUrl}/user`, {headers: headers})
       .subscribe(data => {
         console.log(data);
         this.loggedUserService.setUserId(data['uzytkownik_id']);
