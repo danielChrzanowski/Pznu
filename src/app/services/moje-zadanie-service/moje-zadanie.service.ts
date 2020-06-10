@@ -23,7 +23,8 @@ export class MojeZadanieService {
   }
 
   public deleteLink(id): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/deleteLink/` + id);
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.delete(`${this.baseUrl}/deleteLink/` + id, { headers: headers });
   }
 
 }
