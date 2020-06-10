@@ -1,4 +1,20 @@
 <div class="content">
-    dodawanie postow co mamy
+    <h1>Nowy post</h1>
+
+    <form (ngSubmit)="onSubmit()">
+
+        <div class="inputs">
+            <label for="title">Tytuł</label>
+            <input type="text" name="title" [(ngModel)]="post.title"> 
+        </div>
+    
+        <div class="inputs">
+            <label for="content">Treść</label>
+            <textarea name="content" rows="30" cols="100" [(ngModel)]="post.content"></textarea>
+        </div>
+
+        <button type="submit" mat-raised-button color="warn">Publikuj</button>
+
+    </form>
 
 </div>

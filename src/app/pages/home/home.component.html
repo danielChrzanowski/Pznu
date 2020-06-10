@@ -1,10 +1,12 @@
 <div class="content">
     <h1>Aktualności</h1>
 
-    <hr>
-
-    <div class="tekst">
-        tutaj te posty co mamy zrobione
+    <button mat-button class="newPostBtn" (click)="addPost()" *ngIf="isLoggedIn()">Nowy post</button>
+    <div class="post" *ngFor="let post of posts">
+        <h2>{{post.title}}</h2>
+        <span class="date">Utworzono: {{post.created}}, przez:</span>
+        <span class="user">{{post.username}}</span>
+        <p>{{post.content}}</p>
     </div>
 
 </div>

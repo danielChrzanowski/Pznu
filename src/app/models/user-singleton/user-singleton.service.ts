@@ -35,6 +35,10 @@ export class UserSingleton {
     return this.uzytkownik_id;
   }
 
+  getName(){
+    return this.imie;
+  }
+
   setUserId(id: number) {
     this.uzytkownik_id = id;
   }

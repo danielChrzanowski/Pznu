@@ -16,7 +16,7 @@ export class EmployeeAuthGuardService {
     if (sessionStorage.getItem('token') != null && this.loggedUserService.getCzy_pracownik() == true) {
       return true;
     } else {
-      this.router.navigate(['/log-in']);
+      // this.router.navigate(['/log-in']);
       return false;
     }
   }
