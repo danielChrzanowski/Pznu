@@ -1,24 +1,34 @@
 <div class="content">
     <h1>Dodaj aktuaności</h1>
 
-    <form (ngSubmit)="onSubmit()">
+    <hr>
 
-        <div class="inputs">
-            <label for="title">Tytuł</label>
-            <input type="text" name="title" [(ngModel)]="post.title"> 
-        </div>
-    
-        <div class="inputs">
-            <label for="content">Treść</label>
-            <textarea name="content" rows="30" cols="100" [(ngModel)]="post.content"></textarea>
-        </div>
+    <form (ngSubmit)="onSubmit()">
+        <mat-form-field class="titleWidth">
+            <mat-label>Tytuł</mat-label>
+            <input matInput name="title" [formControl]="titleFormControl" #titleInput>
+            <mat-error *ngIf="titleFormControl.hasError('maxlength') && !titleFormControl.hasError('required')">
+                Max 40 znaków
+            </mat-error>
+            <mat-error *ngIf="titleFormControl.hasError('required')">
+                Tytuł nie może być pusty
+            </mat-error>
+        </mat-form-field>
+
+        <br>
 
         <mat-form-field class="example-full-width">
-            <mat-label>Leave a comment</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-          </mat-form-field>
+            <mat-label>Treść</mat-label>
+            <textarea matInput placeholder="Nowe ogłoszenie" [formControl]="trescFormControl" #trescInput></textarea>
+            <mat-error *ngIf="trescFormControl.hasError('required')">
+                Treść nie może być pusta
+            </mat-error>
+        </mat-form-field>
 
-        <button type="submit" mat-raised-button color="warn">Publikuj</button>
+        <br><br>
+
+        <button type="submit" [disabled]="!titleFormControl.valid || !trescFormControl.valid"
+            mat-stroked-button>Publikuj</button>
 
     </form>
 

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Post } from 'src/app/models/post-model/post.model';
 import { PostServiceService } from 'src/app/services/post-service/post-service.service';
 import { Router } from '@angular/router';
 import { UzytkownikServiceService } from 'src/app/services/uzytkownik-service/uzytkownik-service.service';
 import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dodaj-post',
@@ -11,6 +12,18 @@ import { UserSingleton } from 'src/app/models/user-singleton/user-singleton.serv
   styleUrls: ['./dodaj-post.component.scss']
 })
 export class DodajPostComponent implements OnInit {
+
+  @ViewChild('titleInput') titleInput: ElementRef;
+  @ViewChild('trescInput') trescInput: ElementRef;
+
+  titleFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(40)
+  ]);
+
+  trescFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   //Dzisiejsza data
   today: Date = new Date();
@@ -31,6 +44,8 @@ export class DodajPostComponent implements OnInit {
   onSubmit() {
     this.post.created = this.date;
     this.post.username = this.loggedUserService.getName();
+    this.post.title = this.titleInput.nativeElement.value;
+    this.post.content = this.trescInput.nativeElement.value;
     this.save();
   }
 
