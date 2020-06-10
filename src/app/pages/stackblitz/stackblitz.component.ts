@@ -38,6 +38,18 @@ export class StackblitzComponent implements OnInit {
   selectedTitleToDelete;
 
   columnsToDisplay = ['id', 'tytul', 'link'];
+  tableDef: Array<any> = [
+    {
+      key: 'id',
+      header: 'ID'
+    },    {
+      key: 'tytul',
+      header: 'Tytuł'
+    },    {
+      key: 'link',
+      header: 'Link'
+    }
+  ];
   expandedElement: MojeZadanie | null;
 
   constructor(

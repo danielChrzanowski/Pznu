@@ -9,7 +9,6 @@ export class UserSingleton {
   nazwisko: string;
   email: string;
   czy_pracownik: boolean;
-  link_github: string;
 
   getLoggedUser() {
     return this;
@@ -19,23 +18,20 @@ export class UserSingleton {
     imie: string,
     nazwisko: string,
     email: string,
-    czy_pracownik: boolean,
-    link_github: string) {
+    czy_pracownik: boolean) {
 
     this.uzytkownik_id = uzytkownik_id;
     this.imie = imie;
     this.nazwisko = nazwisko;
     this.email = email;
     this.czy_pracownik = czy_pracownik;
-    this.link_github = link_github;
-
   }
 
   getId() {
     return this.uzytkownik_id;
   }
 
-  getName(){
+  getName() {
     return this.imie;
   }
 

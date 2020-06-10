@@ -28,7 +28,7 @@ export class ZadaniaComponent implements OnInit {
       key: 'data',
       header: 'Data'
     }
-  ]
+  ];
   expandedElement: Zadanie | null;
 
   constructor(private zadanieService: ZadanieService) { }

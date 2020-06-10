@@ -1,5 +1,5 @@
 <div class="content">
-    <h1>Nowy post</h1>
+    <h1>Dodaj aktuaności</h1>
 
     <form (ngSubmit)="onSubmit()">
 
@@ -12,6 +12,11 @@
             <label for="content">Treść</label>
             <textarea name="content" rows="30" cols="100" [(ngModel)]="post.content"></textarea>
         </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+          </mat-form-field>
 
         <button type="submit" mat-raised-button color="warn">Publikuj</button>
 
