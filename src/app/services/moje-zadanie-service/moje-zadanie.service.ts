@@ -12,14 +12,14 @@ export class MojeZadanieService {
 
   constructor(private http: HttpClient) { }
 
-  public getAll(): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
-    return this.http.get(`${this.baseUrl}/getAllMojeZadania`, {headers: headers});
+  public getAll(id: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.get(`${this.baseUrl}/getAllMojeZadania/` + id, { headers: headers });
   }
 
   public addMojeZadanie(zadanie: MojeZadanie): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
-    return this.http.post(`${this.baseUrl}/addMojeZadanie`, zadanie, {headers: headers});
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.post(`${this.baseUrl}/addMojeZadanie`, zadanie, { headers: headers });
   }
 
 }

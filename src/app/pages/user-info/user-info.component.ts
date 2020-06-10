@@ -77,11 +77,9 @@ export class UserInfoComponent implements OnInit {
             this.uzytkownikService.changePassword(passwordModel)
               .subscribe(data => {
                 console.log(data);
-
                 this.openModal("passwordChangedModal");
-
                 setTimeout(() => this.logout(), 1000);
-
+                
               }, error => console.log(error));
 
           }

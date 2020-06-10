@@ -18,8 +18,8 @@ export class UzytkownikServiceService {
   }
 
   public loggedUserById(id: any): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
-    return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id, {headers: headers});
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.get(`${this.baseUrl}/userByIdNoPassword/` + id, { headers: headers });
   }
 
   public userByLogin(login: string): Observable<any> {
@@ -27,8 +27,8 @@ export class UzytkownikServiceService {
   }
 
   public getPasswordById(id: any): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
-    return this.http.get(`${this.baseUrl}/passwordById/` + id, {headers: headers});
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.get(`${this.baseUrl}/passwordById/` + id, { headers: headers });
   }
 
   public createUser(user: RegisterModel): Observable<any> {
@@ -36,13 +36,13 @@ export class UzytkownikServiceService {
   }
 
   public changePassword(passwordModel: PasswordModel): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
-    return this.http.post(`${this.baseUrl}/changePassword`, passwordModel, {headers: headers});
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.post(`${this.baseUrl}/changePassword`, passwordModel, { headers: headers });
   }
 
   public deleteUser(id: number): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization','Basic '+sessionStorage.getItem('token'));
-    return this.http.delete(`${this.baseUrl}/deleteUser/` + id, {headers: headers});
+    const headers = new HttpHeaders().set('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+    return this.http.delete(`${this.baseUrl}/deleteUser/` + id, { headers: headers });
   }
 
 }

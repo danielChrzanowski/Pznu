@@ -37,7 +37,7 @@ export class MojeZadaniaComponent implements OnInit {
   }
 
   getAll() {
-    this.mojeZadanieService.getAll()
+    this.mojeZadanieService.getAll(this.userSingleton.getId())
       .subscribe(
         data => {
           console.log(data);
@@ -57,10 +57,9 @@ export class MojeZadaniaComponent implements OnInit {
     this.mojeZadanieService.addMojeZadanie(mojeZadanie)
       .subscribe(data => {
         console.log(data);
-
+        this.addInput.nativeElement.value = "";
+        this.getAll();
       }, error => console.log(error));
-
-    this.getAll();
 
   }
 
