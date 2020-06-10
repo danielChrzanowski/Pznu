@@ -19,7 +19,7 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>Treść</mat-label>
-            <textarea matInput placeholder="Nowe ogłoszenie" [formControl]="trescFormControl" #trescInput></textarea>
+            <textarea rows="10" matInput placeholder="Nowe ogłoszenie" [formControl]="trescFormControl" #trescInput></textarea>
             <mat-error *ngIf="trescFormControl.hasError('required')">
                 Treść nie może być pusta
             </mat-error>
