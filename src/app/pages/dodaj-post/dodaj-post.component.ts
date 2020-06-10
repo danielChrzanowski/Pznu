@@ -30,7 +30,6 @@ export class DodajPostComponent implements OnInit {
 
   onSubmit() {
     this.post.created = this.date;
-    this.post.userid = this.loggedUserService.getId();
     this.post.username = this.loggedUserService.getName();
     this.save();
   }

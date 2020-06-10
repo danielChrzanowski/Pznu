@@ -20,6 +20,15 @@ export class ZadaniaComponent implements OnInit {
   zadania: Array<Zadanie>;
 
   columnsToDisplay = ['tytul', 'data'];
+  tableDef: Array<any> = [
+    {
+      key: 'tytul',
+      header: 'Tytuł'
+    },    {
+      key: 'data',
+      header: 'Data'
+    }
+  ]
   expandedElement: Zadanie | null;
 
   constructor(private zadanieService: ZadanieService) { }
