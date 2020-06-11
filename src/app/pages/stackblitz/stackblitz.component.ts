@@ -37,7 +37,7 @@ export class StackblitzComponent implements OnInit {
   selectedLinkToDelete;
   selectedTitleToDelete;
 
-  columnsToDisplay = ['id', 'tytul', 'link'];
+  columnsToDisplay = ['id', 'tytul', 'link','czy_ocenione','recenzent'];
   tableDef: Array<any> = [
     {
       key: 'id',
@@ -48,6 +48,12 @@ export class StackblitzComponent implements OnInit {
     }, {
       key: 'link',
       header: 'Link'
+    }, {
+      key: 'czy_ocenione',
+      header: 'Czy oceniono'
+    }, {
+      key: 'recenzent',
+      header: 'Recenzent'
     }
   ];
   expandedElement: MojeZadanie | null;
@@ -78,6 +84,8 @@ export class StackblitzComponent implements OnInit {
     mojeZadanie.tytul = this.titleInput.nativeElement.value;
     mojeZadanie.link = this.linkInput.nativeElement.value;
     mojeZadanie.ocena = "brak oceny";
+    mojeZadanie.czy_ocenione = false;
+    mojeZadanie.recenzent = "-";
 
     console.log(mojeZadanie.id_uzytkownika + " " + mojeZadanie.link);
 

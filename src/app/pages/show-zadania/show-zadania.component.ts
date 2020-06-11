@@ -30,7 +30,7 @@ export class ShowZadaniaComponent implements OnInit {
     Validators.required
   ]);
 
-  columnsToDisplay = ['id', 'tytul', 'link'];
+  columnsToDisplay = ['id', 'tytul', 'link','czy_ocenione','recenzent'];
   tableDef: Array<any> = [
     {
       key: 'id',
@@ -41,13 +41,20 @@ export class ShowZadaniaComponent implements OnInit {
     }, {
       key: 'link',
       header: 'Link'
+    }, {
+      key: 'czy_ocenione',
+      header: 'Czy oceniono'
+    }, {
+      key: 'recenzent',
+      header: 'Recenzent'
     }
   ];
   expandedElement: MojeZadanie | null;
 
   constructor(
     private mojeZadanieService: MojeZadanieService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private loggedUserService: UserSingleton
   ) { }
 
   ngOnInit(): void {
@@ -84,6 +91,8 @@ export class ShowZadaniaComponent implements OnInit {
     let mojeZadanie = new MojeZadanie();
     mojeZadanie.id = this.selectedId;
     mojeZadanie.ocena = this.ocenaInput.nativeElement.value;
+    mojeZadanie.czy_ocenione = true;
+    mojeZadanie.recenzent = this.loggedUserService.getName();
 
     const getZadanie = this.mojeZadanieService.getZadanieById(this.selectedId).toPromise();
     getZadanie.then(data => {
