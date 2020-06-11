@@ -13,22 +13,18 @@ export class HomeComponent implements OnInit {
 
   posts: Array<Post>;
 
-  constructor(private postService: PostServiceService, private router: Router, private authService: EmployeeAuthGuardService) {
-    this.router.events.subscribe(
-      (event) => {
-        if(event instanceof NavigationEnd){
-          this.getAll();
-        }
-      }
-    );
-   }
+  constructor(
+    private postService: PostServiceService,
+    private router: Router,
+    private authService: EmployeeAuthGuardService
+  ) { }
 
   ngOnInit(): void {
     this.getAll();
   }
 
   //Zwróć wszystkie posty
-  getAll(){
+  getAll() {
     this.postService.getAll()
       .subscribe(
         data => {
@@ -37,14 +33,14 @@ export class HomeComponent implements OnInit {
         },
         error => console.log(error));
   }
-  
+
   //Przejdź do dodawania postów
-  addPost(){
+  addPost() {
     this.router.navigate(["/dodajPost"]);
   }
 
-  isLoggedIn(){
-    return this.authService.isLoggedIn();     
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 
 }
