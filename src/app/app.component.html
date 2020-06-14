@@ -40,7 +40,7 @@
   <div class="banner">
     <img class="bannerImage" src="assets\images\banner.jpg">
     <div class="name">
-      <h1>banner zrob plox</h1>
+      <h1>banner zrob</h1>
     </div>
   </div>
 
@@ -49,24 +49,24 @@
       <mat-icon>home</mat-icon> Home
     </button>
     <button mat-button (click)="zadania()">
-      <mat-icon> restaurant_menu</mat-icon> Zadania
+      <mat-icon>assignment</mat-icon> Zadania
     </button>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
       <button mat-button (click)="zadaniaStudentow()">
-        <mat-icon> restaurant_menu</mat-icon> Zadania studentów
+        <mat-icon> file_copy</mat-icon> Zadania studentów
       </button>
     </div>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
       <button mat-button (click)="dodajPost()">
-        <mat-icon> restaurant_menu</mat-icon> Dodaj aktualności
+        <mat-icon> post_add</mat-icon> Dodaj aktualności
       </button>
     </div>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik==false" id='loginBarInline'>
       <button mat-button (click)="stackblitz()">
-        <mat-icon> menu_book </mat-icon> Stackblitz
+        <img src="data:image/svg+xml,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='23px' height='34px' viewBox='0 0 23 34' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3Ctitle%3EPath%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cg id='Symbols' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg class='icon' fill='%231389FD' fill-rule='nonzero'%3E %3Cpolygon id='Path' points='0 19.9187087 9.87007874 19.9187087 4.12007874 34 23 13.9612393 13.0846457 13.9612393 18.7893701 0'%3E%3C/polygon%3E %3C/g%3E %3C/g%3E %3C/svg%3E" alt="StackBlitz logo" style="width: 25px; height: 25px;"> Stackblitz
       </button>
     </div>
 
