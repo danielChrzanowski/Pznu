@@ -57,6 +57,9 @@
     <button mat-button (click)="zadania()">
       <mat-icon>assignment</mat-icon> Zadania
     </button>
+    <button mat-button (click)="kontakt()">
+      <mat-icon>assignment</mat-icon> Kontakt
+    </button>
 
     <div *ngIf="uzytkownik!=null && uzytkownik.czy_pracownik" id='loginBarInline'>
       <button mat-button (click)="zadaniaStudentow()">

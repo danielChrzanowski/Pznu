@@ -11,6 +11,7 @@ import { EmployeeAuthGuard } from './_authentication/employee-auth-guard/employe
 import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard';
 import { StackblitzComponent } from './pages/stackblitz/stackblitz.component';
 import { ShowZadaniaComponent } from './pages/show-zadania/show-zadania.component';
+import { KontaktComponent } from './pages/kontakt/kontakt.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'stackblitz', canActivate: [ClientAuthGuard], component: StackblitzComponent },
   { path: 'userInfo', canActivate: [UserAuthGuard], component: UserInfoComponent },
   { path: 'showZadania', canActivate: [EmployeeAuthGuard], component: ShowZadaniaComponent },
+  { path: 'kontakt', component: KontaktComponent },
 ];
 
 @NgModule({
@@ -36,6 +38,6 @@ const routes: Routes = [
 export class RoutingModule { }
 
 export const routingComponents = [HomeComponent, LogInComponent, CreateUserComponent,
-  ZadaniaComponent, StackblitzComponent, DodajPostComponent, UserInfoComponent, ShowZadaniaComponent]
+  ZadaniaComponent, StackblitzComponent, DodajPostComponent, UserInfoComponent, ShowZadaniaComponent, KontaktComponent]
 
 //--module app

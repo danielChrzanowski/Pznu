@@ -11,13 +11,11 @@ import { EmployeeAuthGuardService } from './_authentication/employee-auth-guard/
 import { UserAuthGuard } from './_authentication/user-auth-guard/user-auth-guard';
 import { UserAuthGuardService } from './_authentication/user-auth-guard/user-auth-guard.service';
 import { ModalModule } from './_modal';
-import { ShowZadaniaComponent } from './pages/show-zadania/show-zadania.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    ShowZadaniaComponent
+    routingComponents
   ],
   imports: [
     RoutingModule,
