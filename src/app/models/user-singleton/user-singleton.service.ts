@@ -43,4 +43,12 @@ export class UserSingleton {
     return this.czy_pracownik;
   }
 
+  getImie(){
+    return this.imie;
+  }
+
+  getNazwisko(){
+    return this.nazwisko;
+  }
+
 }

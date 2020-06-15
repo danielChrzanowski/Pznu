@@ -43,7 +43,8 @@ export class DodajPostComponent implements OnInit {
 
   onSubmit() {
     this.post.created = this.date;
-    this.post.username = this.loggedUserService.getName();
+    this.post.imie = this.loggedUserService.getImie();
+    this.post.nazwisko = this.loggedUserService.getNazwisko();
     this.post.title = this.titleInput.nativeElement.value;
     this.post.content = this.trescInput.nativeElement.value;
     this.save();

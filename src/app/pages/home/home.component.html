@@ -5,8 +5,8 @@
 
     <div class="post" *ngFor="let post of posts">
         <h2>{{post.title}}</h2>
-        <span class="date">Utworzono: {{post.created}}, przez:</span>
-        <span class="user">{{post.username}}</span>
+        <span class="dateSpan">Utworzono: <span class="date">{{post.created}}</span>, przez:</span>
+        <span class="user">{{post.imie}} {{post.nazwisko}}</span>
         <div class="postContent">{{post.content}}</div>
     </div>
 

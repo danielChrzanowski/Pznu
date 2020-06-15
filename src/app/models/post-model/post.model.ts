@@ -3,5 +3,6 @@ export class Post{
     title: string;
     content: string;
     created: string;
-    username: string;
+    imie: string;
+    nazwisko: string;
 }

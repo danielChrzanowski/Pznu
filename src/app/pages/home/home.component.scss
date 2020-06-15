@@ -3,9 +3,9 @@
     white-space: pre-wrap;
 }
 
-.date {
+.dateSpan {
     font-size: 10px;
-    color: #707070;
+    color: #808080;
 }
 
 .user {
@@ -19,4 +19,8 @@ h2 {
 
 .postContent {
     padding: 15px;
+}
+
+.date{
+    color: white;
 }
