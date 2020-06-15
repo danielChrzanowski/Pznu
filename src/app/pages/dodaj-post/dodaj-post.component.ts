@@ -56,10 +56,11 @@ export class DodajPostComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.post = new Post();
+          this.router.navigate(["/home"]);
         },
         error => console.log(error));
-    this.post = new Post();
-    this.router.navigate(["/home"]);
+   
   }
 
 }
